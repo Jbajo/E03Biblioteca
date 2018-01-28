@@ -1,5 +1,6 @@
 package com.cice.negocio;
 
+import com.cice.controlador.ValidadorDNI;
 import com.cice.modelo.*;
 
 import java.text.ParseException;
@@ -21,10 +22,10 @@ public class Biblioteca {
      */
     public void showMenu() throws ParseException {
         Scanner sc = new Scanner (System.in);
-        int opcion = 0;
+        int opcion;
 
         do {
-            System.out.println("Bienvenido a tu gestion de Poligonos");
+            System.out.println("Bienvenido a tu Biblioteca");
             System.out.println("Esto es lo que puedo hacer por ti:");
             System.out.println("1. Crear Libro");
             System.out.println("2. Crear Revista");
@@ -121,8 +122,7 @@ public class Biblioteca {
     public void crearComic() throws ParseException {
         Scanner sc = new Scanner (System.in);
         Comic comic;
-        boolean bandera = false;
-        String fecha;
+        boolean bandera;
 
         comic = new Comic();
         do {
@@ -165,8 +165,8 @@ public class Biblioteca {
     public void crearLibro(){
         Scanner sc = new Scanner (System.in);
         Libro libro;
-        String autor, isbn, fecha;
-        boolean bandera = false;
+        String autor = "Ken Follet";
+        boolean bandera;
 
 
         libro = new Libro();
@@ -188,8 +188,13 @@ public class Biblioteca {
             bandera= false;
         System.out.println("Introduzca el ISBN-->");
         libro.setIsbn(sc.nextLine());
-        System.out.println("Introduzca el autor-->");
-        libro.setAutor(sc.nextLine());
+        do {
+            if(!autor.matches("^[a-zA-Z ]*$"))
+                System.out.println("Opcion erronea");
+            System.out.println("Introduzca el autor-->");
+            autor = sc.nextLine();
+        }while(!autor.matches("^[a-zA-Z ]*$"));
+        libro.setAutor(autor);
         if(listaLibros.size()>0)
             for(Recurso recurso : listaLibros)
                 if(recurso instanceof Libro)
@@ -209,9 +214,9 @@ public class Biblioteca {
     public void crearRevista(){
         Scanner sc = new Scanner (System.in);
         Revista revista;
-        boolean bandera = false;
+        boolean bandera;
         revista = new Revista();
-        String fecha;
+
 
         do {
             try {
@@ -249,7 +254,7 @@ public class Biblioteca {
      */
     public void crearDisco(){
         Scanner sc = new Scanner (System.in);
-        boolean bandera = false;
+        boolean bandera;
         Disco disco = new Disco();
 
         do {
@@ -325,6 +330,9 @@ public class Biblioteca {
     public void prestarRecurso(){
         IRecurso recurso;
         int opcion;
+        String id="";
+        boolean bandera = true;
+
         Scanner sc = new Scanner (System.in);
         do {
         System.out.println("Seleccione un Recurso");
@@ -338,10 +346,18 @@ public class Biblioteca {
             System.out.println("Introduzca el ID de un usuario");
             recurso.prestarRecurso(sc.nextLine());
         }
-        else
+        else {
             recurso = listaLibros.get(opcion);
-            System.out.println("Introduzca el ID de un usuario");
-            recurso.prestarRecurso(sc.nextLine());
+            while(!ValidadorDNI.validar(id)) {
+                if(!bandera)
+                    System.out.println("Opcion erronea");
+                System.out.println("Introduzca el ID de un usuario");
+                id = sc.nextLine();
+                if(!ValidadorDNI.validar(id))
+                    bandera = false;
+            }
+            recurso.prestarRecurso(id);
+        }
     }
 
 
@@ -352,7 +368,7 @@ public class Biblioteca {
 
     public void mostrarPublicacionesFecha() throws ParseException {
         Scanner sc = new Scanner (System.in);
-        boolean bandera = false;
+        boolean bandera;
         String fecha;
         Date date;
 
