@@ -385,23 +385,22 @@ public class Biblioteca {
         IRecurso recurso;
         int opcion;
         String id="";
-        boolean bandera = true;
-        boolean bandera2 = false;
+        boolean bandera = false;
 
         Scanner sc = new Scanner (System.in);
         if(listaLibros.size()>0|| listaDiscos.size()>0) {
             for (Recurso recursoaux : listaLibros) {
                 if (recursoaux.isPrestado() == true)
-                    bandera2 = true;
+                    bandera = true;
             }
             for (Multimedia multimedia : listaDiscos) {
                 if (multimedia.isPrestado() == true)
-                    bandera2 = true;
+                    bandera = true;
             }
         }
         else
-            bandera2= false;
-        if(bandera2) {
+            bandera= false;
+        if(bandera) {
             do {
                 System.out.println("Seleccione un Recurso a devolver");
                 this.mostrarRecursosPrestados();
