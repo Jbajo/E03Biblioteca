@@ -1,5 +1,6 @@
 package com.cice.modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Hashtable;
 
@@ -50,10 +51,12 @@ public class Libro extends Recurso {
 
     @Override
     public String toString() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
         return "Libro{" +
                 "isbn='" + isbn + '\'' +
                 ", autor='" + autor + '\'' +
-                ", fecha='" + fecha + '\'' +
+                ", fecha='" + formatter.format(fecha) + '\'' +
                 ", nombre='" + titulo + '\'' +
                 ", idusuario='" + idusuario + '\'' +
                 ", prestado=" + prestado +

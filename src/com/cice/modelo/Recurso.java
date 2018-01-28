@@ -29,8 +29,8 @@ public abstract class Recurso implements IRecurso{
     }
 
     public void setFecha(String fecha) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = formatter.parse(fecha);
+        SimpleDateFormat parser = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = parser.parse(fecha);
         this.fecha = date;
     }
 
@@ -60,8 +60,10 @@ public abstract class Recurso implements IRecurso{
 
     @Override
     public String toString() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
         return "Recurso{" +
-                "fecha='" + fecha + '\'' +
+                "fecha='" + formatter.format(fecha) + '\'' +
                 ", nombre='" + titulo + '\'' +
                 ", idusuario='" + idusuario + '\'' +
                 ", prestado=" + prestado +

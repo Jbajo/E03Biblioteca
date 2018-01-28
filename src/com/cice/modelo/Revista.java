@@ -1,5 +1,6 @@
 package com.cice.modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -49,10 +50,12 @@ public class Revista extends Recurso {
 
     @Override
     public String toString() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
         return "Revista{" +
                 "numero=" + numero +
                 ", periocidad='" + periocidad + '\'' +
-                ", fecha='" + fecha + '\'' +
+                ", fecha='" + formatter.format(fecha) + '\'' +
                 ", nombre='" + titulo + '\'' +
                 ", idusuario='" + idusuario + '\'' +
                 ", prestado=" + prestado +

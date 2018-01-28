@@ -34,7 +34,8 @@ public class Biblioteca {
             System.out.println("5. Listado de publicaciones y discos");
             System.out.println("6. Listado de publicaciones y discos prestados");
             System.out.println("7. Prestar un Recurso");
-            System.out.println("8. Publicaciones anteriores a una fecha");
+            System.out.println("8. Devolver un Recurso");
+            System.out.println("9. Publicaciones anteriores a una fecha");
             System.out.println("0. Salir");
             opcion = sc.nextInt();
             controles (opcion);
@@ -79,6 +80,10 @@ public class Biblioteca {
                 prestarRecurso();
                 break;
             case 8:
+                // Devolver un Recurso
+                devolverRecurso();
+                break;
+            case 9:
                 //mostrar Publicaciones anteriores a una fecha
                 mostrarPublicacionesFecha();
                 break;
@@ -325,38 +330,92 @@ public class Biblioteca {
      * Método prestarRecurso presta un Recurso a un Usuario de la Biblitoeca
      *
      */
-
-
     public void prestarRecurso(){
         IRecurso recurso;
         int opcion;
         String id="";
         boolean bandera = true;
+        boolean bandera2 = false;
 
         Scanner sc = new Scanner (System.in);
-        do {
-        System.out.println("Seleccione un Recurso");
-        this.mostrarRecursos();
-        opcion = Integer.parseInt(sc.nextLine());
-        opcion--;
-        } while (opcion < 0 || opcion > listaLibros.size()+listaDiscos.size());
-        if(opcion>listaLibros.size()-1) {
-            System.out.println(opcion-listaLibros.size() );
-            recurso = listaDiscos.get(opcion-listaLibros.size() );
-            System.out.println("Introduzca el ID de un usuario");
-            recurso.prestarRecurso(sc.nextLine());
-        }
-        else {
-            recurso = listaLibros.get(opcion);
-            while(!ValidadorDNI.validar(id)) {
-                if(!bandera)
-                    System.out.println("Opcion erronea");
-                System.out.println("Introduzca el ID de un usuario");
-                id = sc.nextLine();
-                if(!ValidadorDNI.validar(id))
-                    bandera = false;
+        if(listaLibros.size()>0|| listaDiscos.size()>0) {
+            for (Recurso recursoaux : listaLibros) {
+                if (recursoaux.isPrestado() == false)
+                    bandera2 = true;
             }
-            recurso.prestarRecurso(id);
+            for (Multimedia multimedia : listaDiscos) {
+                if (multimedia.isPrestado() == false)
+                    bandera2 = true;
+            }
+        }
+        else
+            bandera2= false;
+        if(bandera2) {
+            do {
+                System.out.println("Seleccione un Recurso");
+                this.mostrarRecursos();
+                opcion = Integer.parseInt(sc.nextLine());
+                opcion--;
+            } while (opcion < 0 || opcion > listaLibros.size() + listaDiscos.size());
+            if (opcion > listaLibros.size() - 1) {
+                System.out.println(opcion - listaLibros.size());
+                recurso = listaDiscos.get(opcion - listaLibros.size());
+                System.out.println("Introduzca el ID de un usuario");
+                recurso.prestarRecurso(sc.nextLine());
+            } else {
+                recurso = listaLibros.get(opcion);
+                while (!ValidadorDNI.validar(id)) {
+                    if (!bandera)
+                        System.out.println("Opcion erronea");
+                    System.out.println("Introduzca el ID de un usuario");
+                    id = sc.nextLine();
+                    if (!ValidadorDNI.validar(id))
+                        bandera = false;
+                }
+                recurso.prestarRecurso(id);
+            }
+        }
+    }
+
+    /**
+     * Método devolverRecurso devuelve un Recurso que tiene un Usuario a la Biblitoeca
+     *
+     */
+    public void devolverRecurso(){
+        IRecurso recurso;
+        int opcion;
+        String id="";
+        boolean bandera = true;
+        boolean bandera2 = false;
+
+        Scanner sc = new Scanner (System.in);
+        if(listaLibros.size()>0|| listaDiscos.size()>0) {
+            for (Recurso recursoaux : listaLibros) {
+                if (recursoaux.isPrestado() == true)
+                    bandera2 = true;
+            }
+            for (Multimedia multimedia : listaDiscos) {
+                if (multimedia.isPrestado() == true)
+                    bandera2 = true;
+            }
+        }
+        else
+            bandera2= false;
+        if(bandera2) {
+            do {
+                System.out.println("Seleccione un Recurso a devolver");
+                this.mostrarRecursosPrestados();
+                opcion = Integer.parseInt(sc.nextLine());
+                opcion--;
+            } while (opcion < 0 || opcion > listaLibros.size() + listaDiscos.size());
+            if (opcion > listaLibros.size() - 1) {
+                System.out.println(opcion - listaLibros.size());
+                recurso = listaDiscos.get(opcion - listaLibros.size());
+                recurso.devuelveRecurso();
+            } else {
+                recurso = listaLibros.get(opcion);
+                recurso.prestarRecurso(id);
+            }
         }
     }
 
@@ -372,14 +431,14 @@ public class Biblioteca {
         String fecha;
         Date date;
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat parser = new SimpleDateFormat("dd/MM/yyyy");
         Libro libro = new Libro();
 
         do {
             try {
                 System.out.println("Introduzca la fecha de publicacion (DD/MM/AAAA)-->");
                 fecha = sc.nextLine();
-                date = formatter.parse(fecha);
+                date = parser.parse(fecha);
                 bandera = false;
                 libro.setFecha(fecha);
             } catch (ParseException pex2) {
@@ -394,10 +453,5 @@ public class Biblioteca {
                   System.out.println(recurso.toString());
             }
         }
-
-
-
-
-
     }
 }
