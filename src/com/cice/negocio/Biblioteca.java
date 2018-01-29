@@ -171,6 +171,7 @@ public class Biblioteca {
         Scanner sc = new Scanner (System.in);
         Libro libro;
         String autor = "Ken Follet";
+        String isbn = "ISBN: 1234567891123";
         boolean bandera;
 
 
@@ -191,8 +192,13 @@ public class Biblioteca {
         libro.seTitulo(sc.nextLine());
         do{
             bandera= false;
-        System.out.println("Introduzca el ISBN-->");
-        libro.setIsbn(sc.nextLine());
+            do {
+                if(!isbn.matches("\\bISBN[^A-Z0-9]*+(\\d(?:-*+\\d){12})"))
+                    System.out.println("ISBN ERRONEO...");
+                System.out.println("Introduzca el ISBN-->");
+                isbn = sc.nextLine();
+            }while (!isbn.matches("\\bISBN[^A-Z0-9]*+(\\d(?:-*+\\d){12})"));
+           libro.setIsbn(isbn);
         do {
             if(!autor.matches("^[a-zA-Z ]*$"))
                 System.out.println("Opcion erronea");
