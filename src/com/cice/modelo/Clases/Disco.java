@@ -2,6 +2,8 @@ package com.cice.modelo.Clases;
 
 import com.cice.modelo.Enums.EnumFormato;
 
+import java.util.Date;
+
 /**
  * @author Javier Bajo Chacon  javier.bajochacon@gmail.com
  */
@@ -40,6 +42,11 @@ public class Disco extends Multimedia {
     public void prestarRecurso(String idusuario) {
         this.setPrestado(true);
         this.setIdusuario(idusuario);
+    }
+
+    @Override
+    public Date getFecha() {
+        return null;
     }
 
     @Override
