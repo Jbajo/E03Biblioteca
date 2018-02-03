@@ -1,24 +1,26 @@
-package com.cice.modelo;
+package com.cice.modelo.Clases;
+
+import com.cice.modelo.Enums.EnumFormato;
 
 /**
  * @author Javier Bajo Chacon  javier.bajochacon@gmail.com
  */
 public class Disco extends Multimedia {
     private String idusuario;
-    private String formato;
+    EnumFormato formato;
 
     public Disco(String titulo, String duracion) {
         super(titulo, duracion);
-        this.prestado = false;
+        this.setPrestado(false);
         this.idusuario = "";
-        this.formato = Multimedia.formato.DVD.toString();
+        this.formato = EnumFormato.DVD;
 
     }
 
     public Disco() {
         super();
-        this.formato = Multimedia.formato.DVD.toString();
-        this.prestado = false;
+        this.formato = EnumFormato.DVD;
+        this.setPrestado(false);
         this.idusuario = "";
     }
 
@@ -30,8 +32,8 @@ public class Disco extends Multimedia {
         this.idusuario = idusuario;
     }
 
-    public String getFormato() {
-        return formato;
+    public EnumFormato getFormato() {
+        return this.formato;
     }
 
     @Override
@@ -50,10 +52,10 @@ public class Disco extends Multimedia {
     public String toString() {
         return "Disco{" +
                 "formato='" + formato + '\'' +
-                ", titulo='" + titulo + '\'' +
-                ", duracion='" + duracion + '\'' +
+                ", titulo='" + this.getTitulo() + '\'' +
+                ", duracion='" + this.getDuracion() + '\'' +
                 ", idusuario='" + idusuario + '\'' +
-                ", prestado=" + prestado +
+                ", prestado=" + this.isPrestado() +
                 '}';
     }
 }

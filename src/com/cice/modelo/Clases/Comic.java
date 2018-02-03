@@ -1,4 +1,4 @@
-package com.cice.modelo;
+package com.cice.modelo.Clases;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,10 +54,10 @@ public class Comic extends Recurso {
         return "Comic{" +
                 "numero=" + numero +
                 ", coleccion='" + coleccion + '\'' +
-                ", fecha='" + formatter.format(fecha) + '\'' +
-                ", nombre='" + titulo + '\'' +
-                ", idusuario='" + idusuario + '\'' +
-                ", prestado=" + prestado +
+                ", fecha='" + formatter.format(this.getFecha()) + '\'' +
+                ", nombre='" + this.getTitulo() + '\'' +
+                ", idusuario='" + this.getIdusuario() + '\'' +
+                ", prestado=" + this.isPrestado() +
                 '}';
     }
 }

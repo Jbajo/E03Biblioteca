@@ -1,8 +1,7 @@
-package com.cice.modelo;
+package com.cice.modelo.Clases;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Hashtable;
 
 /**
  * @author Javier Bajo Chacon  javier.bajochacon@gmail.com
@@ -56,10 +55,10 @@ public class Libro extends Recurso {
         return "Libro{" +
                 "isbn='" + isbn + '\'' +
                 ", autor='" + autor + '\'' +
-                ", fecha='" + formatter.format(fecha) + '\'' +
-                ", nombre='" + titulo + '\'' +
-                ", idusuario='" + idusuario + '\'' +
-                ", prestado=" + prestado +
+                ", fecha='" + formatter.format(this.getFecha()) + '\'' +
+                ", nombre='" + this.getTitulo() + '\'' +
+                ", idusuario='" + this.getIdusuario() + '\'' +
+                ", prestado=" + this.isPrestado() +
                 '}';
     }
 }

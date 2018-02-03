@@ -1,24 +1,23 @@
-package com.cice.modelo;
+package com.cice.modelo.Clases;
+
+import com.cice.modelo.Enums.EnumFormato;
+import com.cice.modelo.Interfaces.IRecurso;
 
 /**
  * @author Javier Bajo Chacon  javier.bajochacon@gmail.com
  */
 public abstract class Multimedia implements IRecurso {
-    protected String titulo;
-    public enum formato{
-        CINTA,
-        DVD,
-        VINILO
-    };
-    protected String duracion;
-    boolean prestado;
+    private String titulo;
+    private EnumFormato formato;
+    private String duracion;
+    private boolean prestado;
 
-    public Multimedia(String titulo, String duracion) {
+    protected Multimedia(String titulo, String duracion) {
         this.titulo = titulo;
         this.duracion = duracion;
     }
 
-    public Multimedia() {
+   protected Multimedia() {
     }
 
     public String getTitulo() {
@@ -29,7 +28,7 @@ public abstract class Multimedia implements IRecurso {
         this.titulo = titulo;
     }
 
-    public String getDuracion() {
+   public String getDuracion() {
         return duracion;
     }
 

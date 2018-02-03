@@ -1,27 +1,28 @@
-package com.cice.modelo;
+package com.cice.modelo.Clases;
+
+import com.cice.modelo.Interfaces.IRecurso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * @author Javier Bajo Chacon  javier.bajochacon@gmail.com
  */
-public abstract class Recurso implements IRecurso{
-    protected Date fecha;
-    protected String titulo;
-    protected String idusuario;
-    protected boolean prestado;
+public abstract class Recurso implements IRecurso {
+    private Date fecha;
+    private String titulo;
+    private String idusuario;
+    private boolean prestado;
 
-    public Recurso(Date fecha, String nombre, String idusuario, boolean prestado) {
+    protected Recurso(Date fecha, String nombre, String idusuario, boolean prestado) {
         this.fecha = fecha;
         this.titulo = nombre;
         this.idusuario = idusuario;
         this.prestado = prestado;
     }
 
-    public Recurso() {
+    protected Recurso() {
     }
 
     public Date getFecha() {

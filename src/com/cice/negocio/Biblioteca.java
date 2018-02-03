@@ -1,7 +1,8 @@
 package com.cice.negocio;
 
 import com.cice.controlador.ValidadorDNI;
-import com.cice.modelo.*;
+import com.cice.modelo.Clases.*;
+import com.cice.modelo.Interfaces.IRecurso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
