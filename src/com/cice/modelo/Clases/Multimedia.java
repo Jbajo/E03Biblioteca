@@ -6,7 +6,7 @@ import com.cice.modelo.Interfaces.IRecurso;
 /**
  * @author Javier Bajo Chacon  javier.bajochacon@gmail.com
  */
-public abstract class Multimedia implements IRecurso {
+public abstract class Multimedia implements IRecurso, Comparable<Multimedia> {
     private String titulo;
     private EnumFormato formato;
     private String duracion;
@@ -42,5 +42,10 @@ public abstract class Multimedia implements IRecurso {
 
     public void setPrestado(int prestado) {
         this.prestado = prestado;
+    }
+
+    @Override
+    public int compareTo(Multimedia o) {
+        return this.isPrestado().compareTo(o.isPrestado());
     }
 }
