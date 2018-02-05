@@ -12,17 +12,17 @@ public class Libro extends Recurso {
 
     @Override
     public void prestarRecurso(String idusuario) {
-        this.setPrestado(true);
+        this.setPrestado(1);
         this.setIdusuario(idusuario);
     }
 
     @Override
     public void devuelveRecurso() {
-        this.setPrestado(false);
+        this.setPrestado(0);
         this.setIdusuario("");
     }
 
-    public Libro(Date fecha, String nombre, String idusuarios, boolean prestado, String isbn, String autor) {
+    public Libro(Date fecha, String nombre, String idusuarios, int prestado, String isbn, String autor) {
         super(fecha, nombre, idusuarios, prestado);
         this.isbn = isbn;
         this.autor = autor;

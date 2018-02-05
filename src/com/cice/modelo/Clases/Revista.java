@@ -12,17 +12,17 @@ public class Revista extends Recurso {
 
     @Override
     public void prestarRecurso(String idusuario) {
-        this.setPrestado(true);
+        this.setPrestado(1);
         this.setIdusuario(idusuario);
     }
 
     @Override
     public void devuelveRecurso() {
-        this.setPrestado(false);
+        this.setPrestado(0);
         this.setIdusuario("");
     }
 
-    public Revista(Date fecha, String titulo, String idusuarios, boolean prestado, int numero, String periocidad) {
+    public Revista(Date fecha, String titulo, String idusuarios, int prestado, int numero, String periocidad) {
         super(fecha, titulo, idusuarios, prestado);
         this.numero = numero;
         this.periocidad = periocidad;

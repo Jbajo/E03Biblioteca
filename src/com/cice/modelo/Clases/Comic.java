@@ -12,17 +12,17 @@ public class Comic extends Recurso {
 
     @Override
     public void prestarRecurso(String idusuario) {
-        this.setPrestado(true);
+        this.setPrestado(1);
         this.setIdusuario(idusuario);
     }
 
     @Override
     public void devuelveRecurso() {
-        this.setPrestado(false);
+        this.setPrestado(0);
         this.setIdusuario("");
     }
 
-    public Comic(Date fecha, String nombre, String idusuarios, boolean prestado, int numero, String coleccion) {
+    public Comic(Date fecha, String nombre, String idusuarios, int prestado, int numero, String coleccion) {
         super(fecha, nombre, idusuarios, prestado);
         this.numero = numero;
         this.coleccion = coleccion;

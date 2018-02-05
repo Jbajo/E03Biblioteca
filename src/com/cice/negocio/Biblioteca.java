@@ -7,6 +7,7 @@ import com.cice.modelo.Interfaces.IRecurso;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -15,10 +16,9 @@ import java.util.Scanner;
  */
 public class Biblioteca {
 
-    private ArrayList<IRecurso> listaLibros= new ArrayList <>();
-    private ArrayList<IRecurso> listaLibrosPrestados = new ArrayList<>();
-    private ArrayList<IRecurso>listaDiscos = new ArrayList<>();
-    private ArrayList<IRecurso>listaDiscosPrestados = new ArrayList<>();
+    private ArrayList<Recurso> listaLibros= new ArrayList <>();
+    private ArrayList<Multimedia>listaDiscos = new ArrayList<>();
+
 
     /**
      * Método showMenu muestra el menú de la aplicación
@@ -296,16 +296,16 @@ public class Biblioteca {
     public void mostrarRecursos(){
         int i = 1;
         if (listaLibros.size()>0){
-            for (IRecurso recurso : listaLibros){
-                if (recurso.isPrestado() == false) {
+            for (Recurso recurso : listaLibros){
+                if (recurso.isPrestado() == 0) {
                     System.out.println(i + ") " + recurso.toString());
                     i++;
                 }
             }
         }
         if (listaDiscos.size()>0){
-            for (IRecurso multimedia : listaDiscos){
-                if (multimedia.isPrestado() == false) {
+            for (Multimedia multimedia : listaDiscos){
+                if (multimedia.isPrestado() == 0) {
                     System.out.println(i + ") " + multimedia.toString());
                     i++;
                 }
@@ -320,16 +320,20 @@ public class Biblioteca {
 
     public void mostrarRecursosPrestados(){
         int i = 1;
-        if (listaLibrosPrestados.size()>0){
-            for (IRecurso recurso : listaLibrosPrestados){
-                    System.out.println(i + ") " +recurso.toString());
-                i++;
+        if (listaLibros.size()>0){
+            for (Recurso recurso : listaLibros){
+                    if(recurso.isPrestado() ==1) {
+                        System.out.println(i + ") " + recurso.toString());
+                        i++;
+                    }
             }
         }
-        if (listaDiscosPrestados.size()>0){
-            for (IRecurso multimedia : listaDiscosPrestados){
-                    System.out.println(i + ") " +multimedia.toString());
-                i++;
+        if (listaDiscos.size()>0){
+            for (Multimedia multimedia : listaDiscos){
+                    if(multimedia.isPrestado() == 1) {
+                        System.out.println(i + ") " + multimedia.toString());
+                        i++;
+                    }
             }
         }
     }
@@ -356,12 +360,12 @@ public class Biblioteca {
             } while (opcion < 0 || opcion > listaLibros.size() + listaDiscos.size());
             if (opcion > listaLibros.size() - 1) {
                 System.out.println(opcion - listaLibros.size());
-                recurso = listaDiscos.remove(opcion - listaLibros.size());
+                recurso = listaDiscos.get(opcion - listaLibros.size());
                 System.out.println("Introduzca el ID de un usuario");
                 recurso.prestarRecurso(sc.nextLine());
-                listaDiscosPrestados.add(recurso);
+                Collections.sort(listaLibros);
             } else {
-                recurso = listaLibros.remove(opcion);
+                recurso = listaLibros.get(opcion);
                 while (!ValidadorDNI.validar(id)) {
                     if (!bandera)
                         System.out.println("Opcion erronea");
@@ -371,7 +375,7 @@ public class Biblioteca {
                         bandera = false;
                 }
                 recurso.prestarRecurso(id);
-                listaLibrosPrestados.add(recurso);
+                Collections.sort(listaLibros);
             }
         }
     }
@@ -388,12 +392,12 @@ public class Biblioteca {
 
         Scanner sc = new Scanner (System.in);
         if(listaLibros.size()>0|| listaDiscos.size()>0) {
-            for (IRecurso recursoaux : listaLibros) {
-                if (recursoaux.isPrestado() == true)
+            for (Recurso recursoaux : listaLibros) {
+                if (recursoaux.isPrestado() == 1)
                     bandera = true;
             }
-            for (IRecurso multimedia : listaDiscos) {
-                if (multimedia.isPrestado() == true)
+            for (Multimedia multimedia : listaDiscos) {
+                if (multimedia.isPrestado() == 1)
                     bandera = true;
             }
         }
@@ -412,9 +416,10 @@ public class Biblioteca {
                 recurso.devuelveRecurso();
             } else {
                 recurso = listaLibros.get(opcion);
-                recurso.prestarRecurso(id);
+                recurso.devuelveRecurso();
             }
         }
+        Collections.sort(listaLibros);
     }
 
 
@@ -446,15 +451,9 @@ public class Biblioteca {
         }while(bandera);
 
         if(listaLibros.size()>0){
-            for(IRecurso recurso : listaLibros){
+            for(Recurso recurso : listaLibros){
                if(libro.getFecha().after(recurso.getFecha()))
                   System.out.println(recurso.toString());
-            }
-        }
-        if(listaLibrosPrestados.size()>0){
-            for(IRecurso recurso : listaLibrosPrestados){
-                if(libro.getFecha().after(recurso.getFecha()))
-                    System.out.println(recurso.toString());
             }
         }
     }

@@ -13,7 +13,7 @@ public class Disco extends Multimedia {
 
     public Disco(String titulo, String duracion) {
         super(titulo, duracion);
-        this.setPrestado(false);
+        this.setPrestado(0);
         this.idusuario = "";
         this.formato = EnumFormato.DVD;
 
@@ -22,7 +22,7 @@ public class Disco extends Multimedia {
     public Disco() {
         super();
         this.formato = EnumFormato.DVD;
-        this.setPrestado(false);
+        this.setPrestado(0);
         this.idusuario = "";
     }
 
@@ -40,7 +40,7 @@ public class Disco extends Multimedia {
 
     @Override
     public void prestarRecurso(String idusuario) {
-        this.setPrestado(true);
+        this.setPrestado(1);
         this.setIdusuario(idusuario);
     }
 
@@ -51,7 +51,7 @@ public class Disco extends Multimedia {
 
     @Override
     public void devuelveRecurso() {
-        this.setPrestado(false);
+        this.setPrestado(0);
         this.setIdusuario("");
     }
 

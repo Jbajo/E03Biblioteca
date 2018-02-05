@@ -9,13 +9,13 @@ import java.util.Date;
 /**
  * @author Javier Bajo Chacon  javier.bajochacon@gmail.com
  */
-public abstract class Recurso implements IRecurso {
+public abstract class Recurso implements IRecurso, Comparable<Recurso> {
     private Date fecha;
     private String titulo;
     private String idusuario;
-    private boolean prestado;
+    private Integer prestado;
 
-    protected Recurso(Date fecha, String nombre, String idusuario, boolean prestado) {
+    protected Recurso(Date fecha, String nombre, String idusuario, int prestado) {
         this.fecha = fecha;
         this.titulo = nombre;
         this.idusuario = idusuario;
@@ -23,6 +23,7 @@ public abstract class Recurso implements IRecurso {
     }
 
     protected Recurso() {
+        this.prestado = 0;
     }
 
     public Date getFecha() {
@@ -51,11 +52,11 @@ public abstract class Recurso implements IRecurso {
         this.idusuario = idusuarios;
     }
 
-    public boolean isPrestado() {
+    public Integer isPrestado() {
         return prestado;
     }
 
-    public void setPrestado(boolean prestado) {
+    public void setPrestado(int prestado) {
         this.prestado = prestado;
     }
 
@@ -69,5 +70,9 @@ public abstract class Recurso implements IRecurso {
                 ", idusuario='" + idusuario + '\'' +
                 ", prestado=" + prestado +
                 '}';
+    }
+    @Override
+    public int compareTo(Recurso o) {
+        return this.isPrestado().compareTo(o.isPrestado());
     }
 }

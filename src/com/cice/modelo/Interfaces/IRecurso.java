@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public interface IRecurso {
     void prestarRecurso(String idusuario);
-    boolean isPrestado();
+    Integer isPrestado();
     Date getFecha();
 
     default void devuelveRecurso(){

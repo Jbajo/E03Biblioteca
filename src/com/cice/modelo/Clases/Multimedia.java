@@ -10,7 +10,7 @@ public abstract class Multimedia implements IRecurso {
     private String titulo;
     private EnumFormato formato;
     private String duracion;
-    private boolean prestado;
+    private int prestado;
 
     protected Multimedia(String titulo, String duracion) {
         this.titulo = titulo;
@@ -36,11 +36,11 @@ public abstract class Multimedia implements IRecurso {
         this.duracion = duracion;
     }
 
-    public boolean isPrestado() {
+    public Integer isPrestado() {
         return prestado;
     }
 
-    public void setPrestado(boolean prestado) {
+    public void setPrestado(int prestado) {
         this.prestado = prestado;
     }
 }
