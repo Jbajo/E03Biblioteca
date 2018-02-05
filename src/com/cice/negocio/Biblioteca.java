@@ -297,18 +297,15 @@ public class Biblioteca {
         int i = 1;
         if (listaLibros.size()>0){
             for (Recurso recurso : listaLibros){
-                if (recurso.isPrestado() == 0) {
                     System.out.println(i + ") " + recurso.toString());
                     i++;
-               }
+
             }
         }
         if (listaDiscos.size()>0){
             for (Multimedia multimedia : listaDiscos){
-                if (multimedia.isPrestado() == 0) {
                     System.out.println(i + ") " + multimedia.toString());
                     i++;
-                }
             }
         }
     }
