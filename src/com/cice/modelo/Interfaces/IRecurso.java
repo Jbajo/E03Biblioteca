@@ -9,8 +9,5 @@ public interface IRecurso {
     void prestarRecurso(String idusuario);
     Integer isPrestado();
     Date getFecha();
-
-    default void devuelveRecurso(){
-        System.out.println("Libro devuelto");
-    }
+    void devuelveRecurso();
 }
