@@ -23,7 +23,7 @@ public class Biblioteca {
     /**
      * Método showMenu muestra el menú de la aplicación
      */
-    public void showMenu()  {
+    public void showMenu() throws ParseException {
         Scanner sc = new Scanner (System.in);
         int opcion;
 
@@ -50,7 +50,7 @@ public class Biblioteca {
      * Método controles llama a los distintos métodos de la aplicación
      * @param opcion seleccionada
      */
-    private void controles (int opcion)  {
+    private void controles (int opcion) throws ParseException {
         switch (opcion){
             case 0:
                 break;
@@ -296,16 +296,21 @@ public class Biblioteca {
     public void mostrarRecursos(){
         int i = 1;
         if (listaLibros.size()>0){
+
             for (Recurso recurso : listaLibros){
+                if(recurso.isPrestado() == 0) {
                     System.out.println(i + ") " + recurso.toString());
                     i++;
+                }
 
             }
         }
         if (listaDiscos.size()>0){
             for (Multimedia multimedia : listaDiscos){
-                    System.out.println(i + ") " + multimedia.toString());
-                    i++;
+                    if(multimedia.isPrestado()==0) {
+                        System.out.println(i + ") " + multimedia.toString());
+                        i++;
+                    }
             }
         }
     }
@@ -321,16 +326,18 @@ public class Biblioteca {
             for (Recurso recurso : listaLibros){
                     if(recurso.isPrestado() == 1) {
                         System.out.println(i + ") " + recurso.toString());
-                        i++;
+
                     }
+                i++;
             }
         }
         if (listaDiscos.size()>0){
             for (Multimedia multimedia : listaDiscos){
                     if(multimedia.isPrestado() == 1) {
                         System.out.println(i + ") " + multimedia.toString());
-                        i++;
+
                     }
+
             }
         }
     }
@@ -408,15 +415,16 @@ public class Biblioteca {
                 opcion--;
             } while (opcion < 0 || opcion > listaLibros.size() + listaDiscos.size());
             if (opcion > listaLibros.size() - 1) {
-                System.out.println(opcion - listaLibros.size());
                 recurso = listaDiscos.get(opcion - listaLibros.size());
                 recurso.devuelveRecurso();
+                Collections.sort(listaDiscos);
             } else {
                 recurso = listaLibros.get(opcion);
                 recurso.devuelveRecurso();
+                Collections.sort(listaLibros);
             }
         }
-        Collections.sort(listaLibros);
+
     }
 
 
@@ -425,7 +433,7 @@ public class Biblioteca {
      *
      */
 
-    public void mostrarPublicacionesFecha() {
+    public void mostrarPublicacionesFecha() throws ParseException{
         Scanner sc = new Scanner (System.in);
         boolean bandera;
         String fecha;
