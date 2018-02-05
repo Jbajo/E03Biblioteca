@@ -295,6 +295,17 @@ public class Biblioteca {
 
     public void mostrarRecursos(){
         int i = 1;
+
+        //Reordenamos las listas para mostrarlas correctamente
+        if(listaLibros.size()>0)
+            for (Recurso recurso : listaLibros)
+                if(recurso.isPrestado() == 1)
+                    Collections.reverse(listaLibros);
+        if(listaDiscos.size()>0)
+            for (Multimedia multimedia: listaDiscos)
+                if(multimedia.isPrestado() == 1)
+                    Collections.reverse(listaDiscos);
+
         if (listaLibros.size()>0){
 
             for (Recurso recurso : listaLibros){
@@ -322,6 +333,18 @@ public class Biblioteca {
 
     public void mostrarRecursosPrestados(){
         int i = 1;
+
+        //Reordenamos las listas para mostrarlas correctamente
+        if(listaLibros.size()>0)
+        for (Recurso recurso : listaLibros)
+            if(recurso.isPrestado() == 1)
+                Collections.reverse(listaLibros);
+        if(listaDiscos.size()>0)
+        for (Multimedia multimedia: listaDiscos)
+            if(multimedia.isPrestado() == 1)
+                Collections.reverse(listaDiscos);
+
+
         if (listaLibros.size()>0){
             for (Recurso recurso : listaLibros){
                     if(recurso.isPrestado() == 1) {
@@ -337,6 +360,7 @@ public class Biblioteca {
                         System.out.println(i + ") " + multimedia.toString());
 
                     }
+                    i++;
 
             }
         }
@@ -357,6 +381,7 @@ public class Biblioteca {
         Scanner sc = new Scanner (System.in);
         if(listaLibros.size()>0 || listaDiscos.size()>0) {
             do {
+
                 System.out.println("Seleccione un Recurso");
                 this.mostrarRecursos();
                 opcion = Integer.parseInt(sc.nextLine());
@@ -409,6 +434,7 @@ public class Biblioteca {
             bandera= false;
         if(bandera) {
             do {
+
                 System.out.println("Seleccione un Recurso a devolver");
                 this.mostrarRecursosPrestados();
                 opcion = Integer.parseInt(sc.nextLine());
