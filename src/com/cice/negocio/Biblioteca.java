@@ -23,7 +23,7 @@ public class Biblioteca {
     /**
      * Método showMenu muestra el menú de la aplicación
      */
-    public void showMenu() throws ParseException {
+    public void showMenu()  {
         Scanner sc = new Scanner (System.in);
         int opcion;
 
@@ -50,7 +50,7 @@ public class Biblioteca {
      * Método controles llama a los distintos métodos de la aplicación
      * @param opcion seleccionada
      */
-    private void controles (int opcion) throws ParseException {
+    private void controles (int opcion)  {
         switch (opcion){
             case 0:
                 break;
@@ -100,7 +100,7 @@ public class Biblioteca {
      * Método crearRecurso crea un Recurso ya sea Comic, Libro, Revista o Disco
      *
      */
-    private void crearRecurso(char tipo) throws ParseException {
+    private void crearRecurso(char tipo){
 
 
         switch (tipo){
@@ -127,7 +127,7 @@ public class Biblioteca {
      * Método crearComic crea un Comic pidiendo sus datos al Usuario
      *
      */
-    public void crearComic() throws ParseException {
+    public void crearComic()  {
         Scanner sc = new Scanner (System.in);
         Comic comic;
         boolean bandera;
@@ -425,7 +425,7 @@ public class Biblioteca {
      *
      */
 
-    public void mostrarPublicacionesFecha() throws ParseException {
+    public void mostrarPublicacionesFecha() {
         Scanner sc = new Scanner (System.in);
         boolean bandera;
         String fecha;
