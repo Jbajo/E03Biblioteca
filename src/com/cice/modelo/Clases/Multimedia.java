@@ -18,6 +18,7 @@ public abstract class Multimedia implements IRecurso, Comparable<Multimedia> {
     }
 
    protected Multimedia() {
+        this.prestado = 0;
     }
 
     public String getTitulo() {

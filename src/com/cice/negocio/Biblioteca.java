@@ -300,7 +300,7 @@ public class Biblioteca {
                 if (recurso.isPrestado() == 0) {
                     System.out.println(i + ") " + recurso.toString());
                     i++;
-                }
+               }
             }
         }
         if (listaDiscos.size()>0){
@@ -322,7 +322,7 @@ public class Biblioteca {
         int i = 1;
         if (listaLibros.size()>0){
             for (Recurso recurso : listaLibros){
-                    if(recurso.isPrestado() ==1) {
+                    if(recurso.isPrestado() == 1) {
                         System.out.println(i + ") " + recurso.toString());
                         i++;
                     }
@@ -363,7 +363,7 @@ public class Biblioteca {
                 recurso = listaDiscos.get(opcion - listaLibros.size());
                 System.out.println("Introduzca el ID de un usuario");
                 recurso.prestarRecurso(sc.nextLine());
-                Collections.sort(listaLibros);
+                Collections.sort(listaDiscos);
             } else {
                 recurso = listaLibros.get(opcion);
                 while (!ValidadorDNI.validar(id)) {
