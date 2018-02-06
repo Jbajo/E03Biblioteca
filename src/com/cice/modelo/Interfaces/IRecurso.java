@@ -1,7 +1,5 @@
 package com.cice.modelo.Interfaces;
 
-import com.cice.modelo.Clases.Recurso;
-
 import java.util.Date;
 
 /**
