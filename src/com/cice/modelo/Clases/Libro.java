@@ -28,12 +28,12 @@ public class Libro extends Recurso {
         super(fecha, nombre, idusuarios, prestado);
         this.isbn = isbn;
         this.autor = autor;
-        this.setPrestable(EnumPrestable.Libro);
+        this.setPrestable(EnumPrestable.LIBRO);
     }
 
     public Libro() {
         super();
-        this.setPrestable(EnumPrestable.Libro);
+        this.setPrestable(EnumPrestable.LIBRO);
     }
 
     public String getIsbn() {

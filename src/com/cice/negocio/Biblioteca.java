@@ -362,10 +362,10 @@ public class Biblioteca {
                        opcion = Integer.parseInt(sc.nextLine());
                        opcion--;
                    } while (opcion < 0 || opcion > listaRecursos.size());
-                   if(listaRecursos.get(opcion).getPrestable().equals(EnumPrestable.Otro))
+                   if(listaRecursos.get(opcion).getPrestable().equals(EnumPrestable.NOPRESTABLE))
                        System.out.println("Opcion no valida...");
                    System.out.println(opcion);
-               }while (listaRecursos.get(opcion).getPrestable().equals(EnumPrestable.Otro));
+               }while (listaRecursos.get(opcion).getPrestable().equals(EnumPrestable.NOPRESTABLE));
                    recurso = listaRecursos.get(opcion);
                    System.out.println("Introduzca el ID de un usuario");
                    recurso.prestarRecurso(sc.nextLine());

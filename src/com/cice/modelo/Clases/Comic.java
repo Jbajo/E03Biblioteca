@@ -16,12 +16,12 @@ public class Comic extends Recurso {
         super(fecha, nombre, idusuarios, prestado);
         this.numero = numero;
         this.coleccion = coleccion;
-        this.setPrestable(EnumPrestable.Otro);
+        this.setPrestable(EnumPrestable.NOPRESTABLE);
     }
 
     public Comic() {
         super();
-        this.setPrestable(EnumPrestable.Otro);
+        this.setPrestable(EnumPrestable.NOPRESTABLE);
     }
 
     public int getNumero() {
