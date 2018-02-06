@@ -172,7 +172,7 @@ public class Biblioteca {
     public void crearLibro(){
         Scanner sc = new Scanner (System.in);
         Libro libro;
-        String autor = "Ken Follet";
+        String autor = "KenFollett";
         String isbn = "ISBN: 1234567891123";
         boolean bandera;
 
