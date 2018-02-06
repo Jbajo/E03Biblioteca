@@ -16,8 +16,7 @@ import java.util.Scanner;
  */
 public class Biblioteca {
 
-    private ArrayList<Recurso> listaLibros= new ArrayList <>();
-    private ArrayList<Multimedia>listaDiscos = new ArrayList<>();
+    private ArrayList<IRecurso> listaRecursos= new ArrayList <>();  
 
 
     /**
@@ -149,8 +148,8 @@ public class Biblioteca {
             bandera=false;
             System.out.println("Introduzca el titulo del comic-->");
             comic.seTitulo(sc.nextLine());
-            if(listaLibros.size()>0)
-                for(IRecurso recurso : listaLibros)
+            if(listaRecursos.size()>0)
+                for(IRecurso recurso : listaRecursos)
                     if(recurso instanceof Comic)
                         if(((Comic) recurso).getTitulo().equals(comic.getTitulo())){
                             System.out.println("Ya existe este Comic en el sistema");
@@ -162,7 +161,7 @@ public class Biblioteca {
         comic.setNumero(Integer.parseInt(sc.nextLine()));
         System.out.println("Introduzca la coleccion-->");
         comic.setColeccion(sc.nextLine());
-        listaLibros.add(comic);
+        listaRecursos.add(comic);
     }
 
     /**
@@ -209,15 +208,15 @@ public class Biblioteca {
             autor = sc.nextLine();
         }while(!autor.matches("^[a-zA-Z ]*$"));
         libro.setAutor(autor);
-        if(listaLibros.size()>0)
-            for(IRecurso recurso : listaLibros)
+        if(listaRecursos.size()>0)
+            for(IRecurso recurso : listaRecursos)
                 if(recurso instanceof Libro)
                    if(((Libro) recurso).getIsbn().equals(libro.getIsbn())){
                         System.out.println("Ya existe este libro en el sistema");
                         bandera= true;
                     }
         }while(bandera);
-        listaLibros.add(libro);
+        listaRecursos.add(libro);
     }
 
     /**
@@ -247,8 +246,8 @@ public class Biblioteca {
             bandera = false;
             System.out.println("Introduzca el titulo de la revista-->");
             revista.seTitulo(sc.nextLine());
-            if(listaLibros.size()>0)
-                for(IRecurso recurso : listaLibros)
+            if(listaRecursos.size()>0)
+                for(IRecurso recurso : listaRecursos)
                     if(recurso instanceof Revista)
                         if(((Revista) recurso).getTitulo().equals(revista.getTitulo())){
                             System.out.println("Ya existe esta Revista en el sistema");
@@ -259,7 +258,7 @@ public class Biblioteca {
         revista.setNumero(Integer.parseInt(sc.nextLine()));
         System.out.println("Introduzca la periocidad-->");
         revista.setPeriocidad(sc.nextLine());
-        listaLibros.add(revista);
+        listaRecursos.add(revista);
     }
 
     /**
@@ -275,8 +274,8 @@ public class Biblioteca {
             bandera = false;
             System.out.println("Introduzca el titulo del Disco->");
             disco.setTitulo(sc.nextLine());
-            if(listaDiscos.size()>0)
-                for(IRecurso multimedia : listaDiscos)
+            if(listaRecursos.size()>0)
+                for(IRecurso multimedia : listaRecursos)
                     if(multimedia instanceof Disco)
                         if(((Disco)multimedia).getTitulo().equals(disco.getTitulo())){
                             System.out.println("Ya existe este Disco en el sistema");
@@ -285,7 +284,7 @@ public class Biblioteca {
         }while (bandera);
         System.out.println("Introduzca la duracion -->");
         disco.setDuracion(sc.nextLine());
-        listaDiscos.add(disco);
+        listaRecursos.add(disco);
     }
 
     /**
@@ -297,31 +296,19 @@ public class Biblioteca {
         int i = 1;
 
         //Reordenamos las listas para mostrarlas correctamente
-        if(listaLibros.size()>0)
-            for (Recurso recurso : listaLibros)
+        if(listaRecursos.size()>0)
+            for (IRecurso recurso : listaRecursos)
                 if(recurso.isPrestado() == 1)
-                    Collections.reverse(listaLibros);
-        if(listaDiscos.size()>0)
-            for (Multimedia multimedia: listaDiscos)
-                if(multimedia.isPrestado() == 1)
-                    Collections.reverse(listaDiscos);
+                    Collections.reverse(listaRecursos);        
 
-        if (listaLibros.size()>0){
+        if (listaRecursos.size()>0){
 
-            for (Recurso recurso : listaLibros){
+            for (IRecurso recurso : listaRecursos){
                 if(recurso.isPrestado() == 0) {
                     System.out.println(i + ") " + recurso.toString());
                     i++;
                 }
 
-            }
-        }
-        if (listaDiscos.size()>0){
-            for (Multimedia multimedia : listaDiscos){
-                    if(multimedia.isPrestado()==0) {
-                        System.out.println(i + ") " + multimedia.toString());
-                        i++;
-                    }
             }
         }
     }
@@ -335,18 +322,13 @@ public class Biblioteca {
         int i = 1;
 
         //Reordenamos las listas para mostrarlas correctamente
-        if(listaLibros.size()>0)
-        for (Recurso recurso : listaLibros)
+        if(listaRecursos.size()>0)
+        for (IRecurso recurso : listaRecursos)
             if(recurso.isPrestado() == 1)
-                Collections.reverse(listaLibros);
-        if(listaDiscos.size()>0)
-        for (Multimedia multimedia: listaDiscos)
-            if(multimedia.isPrestado() == 1)
-                Collections.reverse(listaDiscos);
-
-
-        if (listaLibros.size()>0){
-            for (Recurso recurso : listaLibros){
+                Collections.reverse(listaRecursos);
+       
+        if (listaRecursos.size()>0){
+            for (IRecurso recurso : listaRecursos){
                     if(recurso.isPrestado() == 1) {
                         System.out.println(i + ") " + recurso.toString());
 
@@ -354,16 +336,7 @@ public class Biblioteca {
                 i++;
             }
         }
-        if (listaDiscos.size()>0){
-            for (Multimedia multimedia : listaDiscos){
-                    if(multimedia.isPrestado() == 1) {
-                        System.out.println(i + ") " + multimedia.toString());
-
-                    }
-                    i++;
-
-            }
-        }
+       
     }
 
 
@@ -371,41 +344,27 @@ public class Biblioteca {
      * Método prestarRecurso presta un Recurso a un Usuario de la Biblitoeca
      *
      */
-    public void prestarRecurso(){
+    public void prestarRecurso() {
         IRecurso recurso;
         int opcion;
-        String id="";
+        String id = "";
         boolean bandera = true;
         boolean bandera2 = false;
 
-        Scanner sc = new Scanner (System.in);
-        if(listaLibros.size()>0 || listaDiscos.size()>0) {
+        Scanner sc = new Scanner(System.in);
+        if (listaRecursos.size() > 0) {
             do {
 
                 System.out.println("Seleccione un Recurso");
                 this.mostrarRecursos();
                 opcion = Integer.parseInt(sc.nextLine());
                 opcion--;
-            } while (opcion < 0 || opcion > listaLibros.size() + listaDiscos.size());
-            if (opcion > listaLibros.size() - 1) {
-                System.out.println(opcion - listaLibros.size());
-                recurso = listaDiscos.get(opcion - listaLibros.size());
+            } while (opcion < 0 || opcion > listaRecursos.size());
+                recurso = listaRecursos.get(opcion);
                 System.out.println("Introduzca el ID de un usuario");
                 recurso.prestarRecurso(sc.nextLine());
-                Collections.sort(listaDiscos);
-            } else {
-                recurso = listaLibros.get(opcion);
-                while (!ValidadorDNI.validar(id)) {
-                    if (!bandera)
-                        System.out.println("Opcion erronea");
-                    System.out.println("Introduzca el ID de un usuario");
-                    id = sc.nextLine();
-                    if (!ValidadorDNI.validar(id))
-                        bandera = false;
-                }
-                recurso.prestarRecurso(id);
-                Collections.sort(listaLibros);
-            }
+                Collections.sort(listaRecursos);
+
         }
     }
 
@@ -420,15 +379,11 @@ public class Biblioteca {
         boolean bandera = false;
 
         Scanner sc = new Scanner (System.in);
-        if(listaLibros.size()>0|| listaDiscos.size()>0) {
-            for (Recurso recursoaux : listaLibros) {
+        if(listaRecursos.size()>0) {
+            for (IRecurso recursoaux : listaRecursos) {
                 if (recursoaux.isPrestado() == 1)
                     bandera = true;
-            }
-            for (Multimedia multimedia : listaDiscos) {
-                if (multimedia.isPrestado() == 1)
-                    bandera = true;
-            }
+            }            
         }
         else
             bandera= false;
@@ -439,16 +394,11 @@ public class Biblioteca {
                 this.mostrarRecursosPrestados();
                 opcion = Integer.parseInt(sc.nextLine());
                 opcion--;
-            } while (opcion < 0 || opcion > listaLibros.size() + listaDiscos.size());
-            if (opcion > listaLibros.size() - 1) {
-                recurso = listaDiscos.get(opcion - listaLibros.size());
+            } while (opcion < 0 || opcion > listaRecursos.size());
+                recurso = listaRecursos.get(opcion);
                 recurso.devuelveRecurso();
-                Collections.sort(listaDiscos);
-            } else {
-                recurso = listaLibros.get(opcion);
-                recurso.devuelveRecurso();
-                Collections.sort(listaLibros);
-            }
+                Collections.sort(listaRecursos);
+
         }
 
     }
@@ -481,8 +431,9 @@ public class Biblioteca {
             }
         }while(bandera);
 
-        if(listaLibros.size()>0){
-            for(Recurso recurso : listaLibros){
+        if(listaRecursos.size()>0){
+            for(IRecurso recurso : listaRecursos){
+                if(recurso instanceof Libro)
                if(libro.getFecha().after(recurso.getFecha()))
                   System.out.println(recurso.toString());
             }

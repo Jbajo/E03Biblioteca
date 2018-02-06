@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * @author Javier Bajo Chacon  javier.bajochacon@gmail.com
  */
-public abstract class Recurso implements IRecurso, Comparable<Recurso> {
+public abstract class Recurso implements IRecurso {
     private Date fecha;
     private String titulo;
     private String idusuario;
@@ -70,9 +70,5 @@ public abstract class Recurso implements IRecurso, Comparable<Recurso> {
                 ", idusuario='" + idusuario + '\'' +
                 ", prestado=" + prestado +
                 '}';
-    }
-    @Override
-    public int compareTo(Recurso o) {
-        return this.isPrestado().compareTo(o.isPrestado());
     }
 }
