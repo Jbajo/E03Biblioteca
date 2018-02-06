@@ -299,16 +299,13 @@ public class Biblioteca {
         if(listaRecursos.size()>0)
             for (IRecurso recurso : listaRecursos)
                 if(recurso.isPrestado() == 1)
-                    Collections.reverse(listaRecursos);        
-
+                    Collections.reverse(listaRecursos);
         if (listaRecursos.size()>0){
-
             for (IRecurso recurso : listaRecursos){
                 if(recurso.isPrestado() == 0) {
                     System.out.println(i + ") " + recurso.toString());
                     i++;
                 }
-
             }
         }
     }
@@ -326,7 +323,6 @@ public class Biblioteca {
         for (IRecurso recurso : listaRecursos)
             if(recurso.isPrestado() == 1)
                 Collections.reverse(listaRecursos);
-       
         if (listaRecursos.size()>0){
             for (IRecurso recurso : listaRecursos){
                     if(recurso.isPrestado() == 1) {
@@ -398,7 +394,6 @@ public class Biblioteca {
                 recurso = listaRecursos.get(opcion);
                 recurso.devuelveRecurso();
                 Collections.sort(listaRecursos);
-
         }
 
     }
@@ -430,7 +425,6 @@ public class Biblioteca {
                 bandera = true;
             }
         }while(bandera);
-
         if(listaRecursos.size()>0){
             for(IRecurso recurso : listaRecursos){
                 if(recurso instanceof Libro)
