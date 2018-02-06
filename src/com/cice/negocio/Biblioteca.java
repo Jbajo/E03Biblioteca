@@ -122,7 +122,7 @@ public class Biblioteca {
     }
 
     /**
-     * Método crearComic crea un Comic pidiendo sus datos al Usuario
+     * Método crearComic crea un Comic pidiendo sus datos al Usuario y lo introduce en la listaRecursos
      *
      */
     public void crearComic()  {
@@ -164,7 +164,7 @@ public class Biblioteca {
     }
 
     /**
-     * Método crearComic crea un Libro pidiendo sus datos al Usuario
+     * Método crearComic crea un Libro pidiendo sus datos al Usuario y lo introduce en la listaRecursos
      *
      */
 
@@ -219,7 +219,7 @@ public class Biblioteca {
     }
 
     /**
-     * Método crearRevista crea una Revista pidiendo sus datos al Usuario
+     * Método crearRevista crea una Revista pidiendo sus datos al Usuario y la introduce en la listaRecursos
      *
      */
 
@@ -261,7 +261,7 @@ public class Biblioteca {
     }
 
     /**
-     * Método crearDisco crea un Disco pidiendo sus datos al Usuario
+     * Método crearDisco crea un Disco pidiendo sus datos al Usuario y lo introduce en la listaRecursos
      *
      */
     public void crearDisco(){
@@ -287,7 +287,8 @@ public class Biblioteca {
     }
 
     /**
-     * Método mostrarRecursos muestra los recursos no prestados por pantalla
+     * Método mostrarRecursos muestra los recursos no prestados por pantalla recorriendo la listaRecursos
+     * invirtiendo la lista para que aparezcan primero los recursos no prestados
      *
      */
 
@@ -297,7 +298,7 @@ public class Biblioteca {
         //Reordenamos las listas para mostrarlas correctamente
         if(listaRecursos.size()>0)
             for (IRecurso recurso : listaRecursos)
-                if(recurso.isPrestado() == 1)
+                if(recurso.isPrestado() == 1 && !listaRecursos.get(0).equals(recurso))
                     Collections.reverse(listaRecursos);
         if (listaRecursos.size()>0){
             for (IRecurso recurso : listaRecursos){
@@ -311,6 +312,7 @@ public class Biblioteca {
 
     /**
      * Método mostrarRecursosPrestados muestra los recursos prestados por pantalla
+     * invirtiendo la lista para que aparezcan primero los recursos prestados
      *
      */
 
@@ -320,7 +322,7 @@ public class Biblioteca {
         //Reordenamos las listas para mostrarlas correctamente
         if(listaRecursos.size()>0)
         for (IRecurso recurso : listaRecursos)
-            if(recurso.isPrestado() == 1)
+            if(recurso.isPrestado() == 1 && !listaRecursos.get(0).equals(recurso))
                 Collections.reverse(listaRecursos);
         if (listaRecursos.size()>0){
             for (IRecurso recurso : listaRecursos){
@@ -337,14 +339,12 @@ public class Biblioteca {
 
     /**
      * Método prestarRecurso presta un Recurso a un Usuario de la Biblitoeca
-     *
+     * y reordena la listaRecursos a partir del campo prestado
      */
     public void prestarRecurso() {
         IRecurso recurso;
         int opcion;
         String id = "";
-        boolean bandera = true;
-        boolean bandera2 = false;
 
         Scanner sc = new Scanner(System.in);
         if (listaRecursos.size() > 0) {
@@ -365,7 +365,7 @@ public class Biblioteca {
 
     /**
      * Método devolverRecurso devuelve un Recurso que tiene un Usuario a la Biblitoeca
-     *
+     ** y reordena la listaRecursos a partir del campo prestado
      */
     public void devolverRecurso(){
         IRecurso recurso;
