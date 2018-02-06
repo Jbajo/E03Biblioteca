@@ -1,5 +1,7 @@
 package com.cice.modelo.Clases;
 
+import com.cice.modelo.Enums.EnumPrestable;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -26,10 +28,12 @@ public class Libro extends Recurso {
         super(fecha, nombre, idusuarios, prestado);
         this.isbn = isbn;
         this.autor = autor;
+        this.setPrestable(EnumPrestable.Libro);
     }
 
     public Libro() {
         super();
+        this.setPrestable(EnumPrestable.Libro);
     }
 
     public String getIsbn() {

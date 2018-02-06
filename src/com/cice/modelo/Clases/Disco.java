@@ -1,6 +1,7 @@
 package com.cice.modelo.Clases;
 
 import com.cice.modelo.Enums.EnumFormato;
+import com.cice.modelo.Enums.EnumPrestable;
 
 import java.util.Date;
 
@@ -16,6 +17,7 @@ public class Disco extends Multimedia {
         this.setPrestado(0);
         this.idusuario = "";
         this.formato = EnumFormato.DVD;
+        this.setPrestable(EnumPrestable.Disco);
 
     }
 
@@ -24,6 +26,7 @@ public class Disco extends Multimedia {
         this.formato = EnumFormato.DVD;
         this.setPrestado(0);
         this.idusuario = "";
+        this.setPrestable(EnumPrestable.Disco);
     }
 
     public String getIdusuario() {

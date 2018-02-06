@@ -1,5 +1,7 @@
 package com.cice.modelo.Clases;
 
+import com.cice.modelo.Enums.EnumPrestable;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -26,10 +28,12 @@ public class Revista extends Recurso {
         super(fecha, titulo, idusuarios, prestado);
         this.numero = numero;
         this.periocidad = periocidad;
+        this.setPrestable(EnumPrestable.Otro);
     }
 
     public Revista() {
         super();
+        this.setPrestable(EnumPrestable.Otro);
     }
 
     public int getNumero() {

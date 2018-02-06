@@ -1,6 +1,7 @@
 package com.cice.modelo.Clases;
 
 import com.cice.modelo.Enums.EnumFormato;
+import com.cice.modelo.Enums.EnumPrestable;
 import com.cice.modelo.Interfaces.IRecurso;
 
 /**
@@ -11,6 +12,9 @@ public abstract class Multimedia implements IRecurso{
     private EnumFormato formato;
     private String duracion;
     private int prestado;
+    private EnumPrestable prestable;
+
+
 
     protected Multimedia(String titulo, String duracion) {
         this.titulo = titulo;
@@ -45,5 +49,11 @@ public abstract class Multimedia implements IRecurso{
         this.prestado = prestado;
     }
 
+    public EnumPrestable getPrestable() {
+        return prestable;
+    }
 
+    public void setPrestable(EnumPrestable prestable) {
+        this.prestable = prestable;
+    }
 }

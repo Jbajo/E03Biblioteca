@@ -1,8 +1,8 @@
 package com.cice.negocio;
 
 import com.cice.modelo.Clases.*;
+import com.cice.modelo.Enums.EnumPrestable;
 import com.cice.modelo.Interfaces.IRecurso;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -294,12 +294,14 @@ public class Biblioteca {
 
     public void mostrarRecursos(){
         int i = 1;
-
+        int j = 0;
         //Reordenamos las listas para mostrarlas correctamente
         if(listaRecursos.size()>0)
-            for (IRecurso recurso : listaRecursos)
-                if(recurso.isPrestado() == 1 && !listaRecursos.get(0).equals(recurso))
+            for (IRecurso recurso : listaRecursos) {
+                if (recurso.isPrestado() == 1 && !listaRecursos.get(0).equals(recurso) && j == 0)
                     Collections.reverse(listaRecursos);
+                j++;
+            }
         if (listaRecursos.size()>0){
             for (IRecurso recurso : listaRecursos){
                 if(recurso.isPrestado() == 0) {
@@ -318,12 +320,15 @@ public class Biblioteca {
 
     public void mostrarRecursosPrestados(){
         int i = 1;
+        int j =0;
 
         //Reordenamos las listas para mostrarlas correctamente
         if(listaRecursos.size()>0)
-        for (IRecurso recurso : listaRecursos)
-            if(recurso.isPrestado() == 1 && !listaRecursos.get(0).equals(recurso))
+        for (IRecurso recurso : listaRecursos) {
+            if (recurso.isPrestado() == 1 && !listaRecursos.get(0).equals(recurso) && j == listaRecursos.size() - 1)
                 Collections.reverse(listaRecursos);
+            j++;
+        }
         if (listaRecursos.size()>0){
             for (IRecurso recurso : listaRecursos){
                     if(recurso.isPrestado() == 1) {
@@ -345,21 +350,26 @@ public class Biblioteca {
         IRecurso recurso;
         int opcion;
         String id = "";
+        boolean bandera = false;
 
         Scanner sc = new Scanner(System.in);
         if (listaRecursos.size() > 0) {
-            do {
+               do {
+                   do {
 
-                System.out.println("Seleccione un Recurso");
-                this.mostrarRecursos();
-                opcion = Integer.parseInt(sc.nextLine());
-                opcion--;
-            } while (opcion < 0 || opcion > listaRecursos.size());
-                recurso = listaRecursos.get(opcion);
-                System.out.println("Introduzca el ID de un usuario");
-                recurso.prestarRecurso(sc.nextLine());
-                Collections.sort(listaRecursos);
-
+                       System.out.println("Seleccione un Recurso");
+                       this.mostrarRecursos();
+                       opcion = Integer.parseInt(sc.nextLine());
+                       opcion--;
+                   } while (opcion < 0 || opcion > listaRecursos.size());
+                   if(listaRecursos.get(opcion).getPrestable().equals(EnumPrestable.Otro))
+                       System.out.println("Opcion no valida...");
+                   System.out.println(opcion);
+               }while (listaRecursos.get(opcion).getPrestable().equals(EnumPrestable.Otro));
+                   recurso = listaRecursos.get(opcion);
+                   System.out.println("Introduzca el ID de un usuario");
+                   recurso.prestarRecurso(sc.nextLine());
+                   Collections.sort(listaRecursos);
         }
     }
 

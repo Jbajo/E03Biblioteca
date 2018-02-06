@@ -1,5 +1,6 @@
 package com.cice.modelo.Clases;
 
+import com.cice.modelo.Enums.EnumPrestable;
 import com.cice.modelo.Interfaces.IRecurso;
 
 import java.text.ParseException;
@@ -14,6 +15,7 @@ public abstract class Recurso implements IRecurso {
     private String titulo;
     private String idusuario;
     private Integer prestado;
+    private EnumPrestable prestable;
 
     protected Recurso(Date fecha, String nombre, String idusuario, int prestado) {
         this.fecha = fecha;
@@ -71,4 +73,14 @@ public abstract class Recurso implements IRecurso {
                 ", prestado=" + prestado +
                 '}';
     }
+
+    public EnumPrestable getPrestable() {
+        return prestable;
+    }
+
+    public void setPrestable(EnumPrestable prestable) {
+        this.prestable = prestable;
+    }
+
+
 }

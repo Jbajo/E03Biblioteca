@@ -1,5 +1,7 @@
 package com.cice.modelo.Clases;
 
+import com.cice.modelo.Enums.EnumPrestable;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -10,26 +12,16 @@ public class Comic extends Recurso {
     private int numero;
     private String coleccion;
 
-    @Override
-    public void prestarRecurso(String idusuario) {
-        this.setPrestado(1);
-        this.setIdusuario(idusuario);
-    }
-
-    @Override
-    public void devuelveRecurso() {
-        this.setPrestado(0);
-        this.setIdusuario("");
-    }
-
     public Comic(Date fecha, String nombre, String idusuarios, int prestado, int numero, String coleccion) {
         super(fecha, nombre, idusuarios, prestado);
         this.numero = numero;
         this.coleccion = coleccion;
+        this.setPrestable(EnumPrestable.Otro);
     }
 
     public Comic() {
         super();
+        this.setPrestable(EnumPrestable.Otro);
     }
 
     public int getNumero() {
@@ -59,5 +51,16 @@ public class Comic extends Recurso {
                 ", idusuario='" + this.getIdusuario() + '\'' +
                 ", prestado=" + this.isPrestado() +
                 '}';
+    }
+    @Override
+    public void prestarRecurso(String idusuario) {
+        this.setPrestado(1);
+        this.setIdusuario(idusuario);
+    }
+
+    @Override
+    public void devuelveRecurso() {
+        this.setPrestado(0);
+        this.setIdusuario("");
     }
 }
