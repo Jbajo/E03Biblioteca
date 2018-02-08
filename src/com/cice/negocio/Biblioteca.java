@@ -17,11 +17,10 @@ public class Biblioteca {
 
     private ArrayList<IRecurso> listaRecursos= new ArrayList <>();  
 
-
     /**
      * Método showMenu muestra el menú de la aplicación
      */
-    public void showMenu() throws ParseException {
+    public void showMenu() {
         Scanner sc = new Scanner (System.in);
         int opcion;
 
@@ -48,7 +47,7 @@ public class Biblioteca {
      * Método controles llama a los distintos métodos de la aplicación
      * @param opcion seleccionada
      */
-    private void controles (int opcion) throws ParseException {
+    private void controles (int opcion) {
         switch (opcion){
             case 0:
                 break;
@@ -349,8 +348,6 @@ public class Biblioteca {
     public void prestarRecurso() {
         IRecurso recurso;
         int opcion;
-        String id = "";
-        boolean bandera = false;
 
         Scanner sc = new Scanner(System.in);
         if (listaRecursos.size() > 0) {
@@ -380,7 +377,6 @@ public class Biblioteca {
     public void devolverRecurso(){
         IRecurso recurso;
         int opcion;
-        String id="";
         boolean bandera = false;
 
         Scanner sc = new Scanner (System.in);
@@ -413,7 +409,7 @@ public class Biblioteca {
      *
      */
 
-    public void mostrarPublicacionesFecha() throws ParseException{
+    public void mostrarPublicacionesFecha(){
         Scanner sc = new Scanner (System.in);
         boolean bandera;
         String fecha;
