@@ -28,12 +28,12 @@ public class Revista extends Recurso {
         super(fecha, titulo, idusuarios, prestado);
         this.numero = numero;
         this.periocidad = periocidad;
-        this.setPrestable(EnumPrestable.NOPRESTABLE);
+        this.setPrestable(EnumPrestable.REVISTA);
     }
 
     public Revista() {
         super();
-        this.setPrestable(EnumPrestable.NOPRESTABLE);
+        this.setPrestable(EnumPrestable.REVISTA);
     }
 
     public int getNumero() {
