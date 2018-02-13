@@ -345,7 +345,7 @@ public class Biblioteca {
      * Método prestarRecurso presta un Recurso a un Usuario de la Biblitoeca
      * y reordena la listaRecursos a partir del campo prestado
      */
-    public void prestarRecurso() {
+    private void prestarRecurso() {
         IRecurso recurso;
         int opcion;
 
